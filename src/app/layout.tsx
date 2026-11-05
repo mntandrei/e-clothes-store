@@ -81,7 +81,7 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className={`${cormorant.variable} ${manrope.variable} flex min-h-dvh flex-col bg-[#f6f2e9] text-[#29251f] font-sans antialiased`}>
+      <body className={`${cormorant.variable} ${manrope.variable} flex min-h-dvh flex-col text-[#29251f] font-sans antialiased`}>
         <NavBar />
         <main className="w-full flex-1">
           {children}

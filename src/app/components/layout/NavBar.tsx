@@ -62,8 +62,7 @@ export default function NavBar() {
               width={180}
               height={90}
               priority
-              className="h-auto w-32 sm:w-36 lg:w-40"
-            />
+              className="h-auto w-32 sm:w-36 lg:w-40"/>
           </Link>
 
           <div className="order-3 w-full min-w-0 md:order-2 md:w-auto md:flex-1">
@@ -99,69 +98,74 @@ export default function NavBar() {
       <nav className="w-full bg-[#e8decd]">
         <div className="mx-auto flex min-h-11 w-full max-w-[1280px] items-center gap-4 px-4 py-2.5 sm:px-6 md:gap-6 lg:px-8">
 
-          <div className="relative shrink-0">
+          <div className="relative shrink-0"
+            onMouseEnter={() => setIsOpen(true)}
+            onMouseLeave={() => setIsOpen(false)}>
             <button
               type="button"
-              onClick={() => setIsOpen((prev) => !prev)}
               aria-expanded={isOpen}
               aria-controls="collections-menu"
+              onClick={() => setIsOpen(!isOpen)}
               className="flex cursor-pointer items-center gap-2 text-[11px] font-medium tracking-[0.12em] transition-colors duration-200 hover:text-[#a17c58] sm:text-xs">
               <Menu size={17} strokeWidth={1.8} />
+              
               <span>COLLECTIONS</span>
-              {isOpen ? <ChevronUp size={14} /> :  <ChevronDown size={14} />}
+              {isOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
             </button>
 
             {isOpen && (
-              <div
-                id="collections-menu"
-                className="absolute top-full left-0 z-50 mt-3 w-52 rounded-md border border-[#e8decd] bg-[#f8f5ee] p-2 shadow-lg">
-                <div className="flex flex-col text-xs tracking-wide">
+                <div
+                  id="collections-menu"
+                  className="absolute top-full left-0 z-50 w-52 pt-5">
+                    
+                  <div className="rounded-md border border-[#e8decd] bg-[#f8f5ee] p-2 shadow-lg">
+                    <div className="flex flex-col text-xs tracking-wide">
 
-                  <Link
-                    href="/shop?category=men"
-                    onClick={() => setIsOpen(false)}
-                    className="rounded px-3 py-2.5 hover:bg-[#e8decd]">
-                    MEN
-                  </Link>
+                      <Link
+                        href="/shop?category=men"
+                        onClick={() => setIsOpen(false)}
+                        className="rounded px-3 py-2.5 hover:bg-[#e8decd]">
+                        MEN
+                      </Link>
 
-                  <Link
-                    href="/shop?category=women"
-                    onClick={() => setIsOpen(false)}
-                    className="rounded px-3 py-2.5 hover:bg-[#e8decd]">
-                    WOMEN
-                  </Link>
+                      <Link
+                        href="/shop?category=women"
+                        onClick={() => setIsOpen(false)}
+                        className="rounded px-3 py-2.5 hover:bg-[#e8decd]">
+                        WOMEN
+                      </Link>
 
-                  {/* MOBILE NAVIGATION */}
-                  <div className="mt-2 flex flex-col border-t border-[#e8decd] pt-2 md:hidden">
+                      <div className="mt-2 flex flex-col border-t border-[#e8decd] pt-2 md:hidden">
 
-                    <Link
-                      href="/"
-                      onClick={() => setIsOpen(false)}
-                      className="rounded px-3 py-2.5 hover:bg-[#e8decd]">
-                      HOME
-                    </Link>
+                        <Link
+                          href="/"
+                          onClick={() => setIsOpen(false)}
+                          className="rounded px-3 py-2.5 hover:bg-[#e8decd]">
+                          HOME
+                        </Link>
 
-                    <Link
-                      href="/shop"
-                      onClick={() => setIsOpen(false)}
-                      className="rounded px-3 py-2.5 hover:bg-[#e8decd]">
-                      SHOP
-                    </Link>
+                        <Link
+                          href="/shop"
+                          onClick={() => setIsOpen(false)}
+                          className="rounded px-3 py-2.5 hover:bg-[#e8decd]">
+                          SHOP
+                        </Link>
 
-                    <Link
-                      href="/about"
-                      onClick={() => setIsOpen(false)}
-                      className="rounded px-3 py-2.5 hover:bg-[#e8decd]">
-                      ABOUT
-                    </Link>
+                        <Link
+                          href="/about"
+                          onClick={() => setIsOpen(false)}
+                          className="rounded px-3 py-2.5 hover:bg-[#e8decd]">
+                          ABOUT
+                        </Link>
+
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
 
           <div className="hidden items-center gap-5 md:flex">
-
             <span
               className="h-5 w-px bg-[#c5b59e]"
               aria-hidden="true"/>
