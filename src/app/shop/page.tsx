@@ -1,4 +1,5 @@
 import getProducts from "@/lib/product";
+import ProductCard from "@/app/components/products/ProductCard";
 
 export default async function Shop() {
   
@@ -11,7 +12,11 @@ export default async function Shop() {
       <h1 className="text-center text-3xl font-bold text-[#29251f] sm:text-4xl">
         Shop
       </h1>
-       <p>Products: {products.length}</p>
+      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
     </section>
   );
 }

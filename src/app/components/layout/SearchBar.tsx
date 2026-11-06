@@ -18,7 +18,7 @@ export default function SearchBar() {
         name="q"
         type="search"
         placeholder="Search..."
-        className="h-full w-full rounded-md border border-[#e8decd] bg-transparent pl-3.5 pr-12 text-sm text-[#29251f] outline-none placeholder:text-[#9a8f83] focus-visible:ring-1 focus-visible:ring-[#b9a68b]"/>
+        className="h-full w-full rounded-md border border-[#e8decd] bg-white/65 backdrop-blur-md pl-3.5 pr-12 text-sm text-[#29251f] outline-none placeholder:text-[#9a8f83] focus-visible:ring-1 focus-visible:ring-[#b9a68b]"/>
 
       <button
         type="submit"
