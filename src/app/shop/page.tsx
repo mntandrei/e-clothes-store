@@ -10,7 +10,7 @@ export default async function Shop() {
       <h1 className="text-center text-3xl font-bold text-[#29251f] sm:text-4xl">
         Shop
       </h1>
-       <p>Produse găsite: {products.length}</p>
+       <p>Products: {products.length}</p>
     </section>
   );
 }

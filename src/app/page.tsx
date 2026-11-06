@@ -1,4 +1,3 @@
-
 export default function Home() {
   return (
     <section className="flex min-h-[calc(100dvh-120px)] flex-col items-center justify-center bg-linear-to-br from-[#f6f2e9] via-[#e8decd] to-[#d5c5ad] px-6 py-16">
