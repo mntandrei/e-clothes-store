@@ -1,10 +1,14 @@
 import { isProductsResponse } from './validators';
 import type { Product } from '../types/product';
+import { cacheLife } from "next/cache";
 
 export default async function getProducts(): Promise<Product[]> {
+    "use cache";
+    cacheLife("hours");
+
     const responses = await Promise.all([
-        fetch('https://dummyjson.com/products/category/mens-shirts'), 
-        fetch('https://dummyjson.com/products/category/womens-dresses')
+        fetch("https://dummyjson.com/products/category/mens-shirts"), 
+        fetch("https://dummyjson.com/products/category/womens-dresses")
     ]);
         if (!responses[0].ok) {
     throw new Error(`Failed to fetch men's products: ${responses[0].status}`);
