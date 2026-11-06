@@ -3,6 +3,7 @@ import type { Product } from '../types/product';
 import { cacheLife } from "next/cache";
 
 export default async function getProducts(): Promise<Product[]> {
+    
     "use cache";
     cacheLife("hours");
 
@@ -10,13 +11,12 @@ export default async function getProducts(): Promise<Product[]> {
         fetch("https://dummyjson.com/products/category/mens-shirts"), 
         fetch("https://dummyjson.com/products/category/womens-dresses")
     ]);
-
-    if (!responses[0].ok) {
-        throw new Error(`Failed to fetch men's products: ${responses[0].status}`);
+        if (!responses[0].ok) {
+    throw new Error(`Failed to fetch men's products: ${responses[0].status}`);
     };
 
     if (!responses[1].ok) {
-        throw new Error(`Failed to fetch women's products: ${responses[1].status}`);
+    throw new Error(`Failed to fetch women's products: ${responses[1].status}`);
     };
 
     const data: unknown[] = await Promise.all([
@@ -35,5 +35,4 @@ export default async function getProducts(): Promise<Product[]> {
     const allProducts = [...data[0].products, ...data[1].products];
 
     return allProducts;
-};
-
+} 

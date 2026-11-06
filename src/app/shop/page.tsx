@@ -1,5 +1,7 @@
 import getProducts from "@/lib/product";
+
 export default async function Shop() {
+  
   const products = await getProducts();
 
   console.log("Product prms:", products.length);
