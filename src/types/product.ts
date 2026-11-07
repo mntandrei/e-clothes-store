@@ -4,11 +4,11 @@ export interface Product {
   description: string;
   category: string;
   price: number;
-  discountPercentage: number;
+  discountPercentage?: number;
   rating: number;
-  stock: number;
+  stock?: number;
   thumbnail: string;
-  images: string[];
+  images?: string[];
 };
 
 export interface ProductsResponse {
@@ -17,3 +17,16 @@ export interface ProductsResponse {
   skip: number;
   limit: number;
 };
+
+export interface FakeStoreProduct {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: {
+    rate: number;
+    count: number;
+  };
+}

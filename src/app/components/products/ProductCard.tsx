@@ -13,7 +13,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         alt={product.title}
         width={300}
         height={300}
-        className="w-full aspect-[3/4] object-cover"/>
+        className="h-44 w-full object-contain sm:h-48 lg:h-52"/>
 
         <div className="p-4 space-y-2">
             <p className="text-xs uppercase tracking-widest text-stone-500">{product.category}</p>
