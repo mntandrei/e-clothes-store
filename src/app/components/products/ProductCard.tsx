@@ -25,7 +25,7 @@ export default function ProductCard({ product, eager = false }: ProductCardProps
               {product.title}
             </h3>
             <p className="mt-auto pt-2 text-base font-semibold text-stone-900">
-              ${product.price.toFixed(2)}
+              €{product.price.toFixed(2)}
             </p>
         </div>
     </article>
