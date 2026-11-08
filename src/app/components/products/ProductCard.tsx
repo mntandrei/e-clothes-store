@@ -3,9 +3,10 @@ import Image from "next/image";
 
 interface ProductCardProps {
   product: Product;
+  eager?: boolean;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, eager = false }: ProductCardProps) {
   return (
     <article className="bg-white rounded-xl overflow-hidden">
       <Image
@@ -13,7 +14,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         alt={product.title}
         width={300}
         height={300}
-        className="h-44 w-full object-contain sm:h-48 lg:h-52"/>
+        className="h-44 w-full object-contain sm:h-48 lg:h-52"
+        loading={eager ? "eager" : "lazy"}
+      />
 
         <div className="p-4 space-y-2">
             <p className="text-xs uppercase tracking-widest text-stone-500">{product.category}</p>
