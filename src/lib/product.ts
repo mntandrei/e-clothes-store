@@ -83,8 +83,21 @@ export async function getAllProducts(): Promise<Product[]> {
     ]);
 
     const allProducts: Product[] = [
-        ...fakeProducts, ...products
-    ];
+        ...fakeProducts, ...products];
 
-    return allProducts;
+    const categoryMap: Record<string, "men" | "women"> = {
+        "men's clothing": "men",
+        "mens-shirts": "men",
+        "women's clothing": "women",
+        "womens-dresses": "women",
+    };
+    
+    const normalizedProducts: Product[] = allProducts.map((product) => {
+        return {
+            ...product,
+            category: categoryMap[product.category]
+        };
+    });
+
+    return normalizedProducts;
 }

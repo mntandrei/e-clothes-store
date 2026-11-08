@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Product } from "@/types/product";
 import ProductCard from "@/app/components/products/ProductCard";
 
@@ -15,20 +15,45 @@ export default function Filter({ products }: FilterProps) {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(999);
 
+  const [loaded, isLoaded] = useState(false);
+
+  const filters = {men, women, minPrice, maxPrice};
+
+  useEffect(() => {
+    const savedFilters = sessionStorage.getItem("aurel-filters");
+
+    if (savedFilters) {
+        const parsedFilters = JSON.parse(savedFilters)
+
+        if (
+            typeof parsedFilters?.men === "boolean" &&
+            typeof parsedFilters?.women === "boolean" &&
+            typeof parsedFilters?.minPrice === "number" &&
+            typeof parsedFilters?.maxPrice === "number"
+        ) {
+            setMen(parsedFilters.men);
+            setWomen(parsedFilters.women);
+            setMinPrice(parsedFilters.minPrice);
+            setMaxPrice(parsedFilters.maxPrice);
+        }
+    }
+    isLoaded(true);
+  }, []);
+
+  useEffect(() => {
+  if (!loaded) return;
+
+  sessionStorage.setItem("aurel-filters",JSON.stringify(filters));
+ }, [men, women, minPrice, maxPrice, loaded]);
+
   const filteredProducts = products.filter((product) => {
     if (!men && !women) return false;
 
-    const categoryMatch =
-      (men && women) ||
-      (men && product.category === "mens-shirts") ||
-      (women &&
-        (product.category === "womens-dresses" ||
-          product.category === "tops"));
-
+    const categoryMatch = (men && product.category === "men") || (women && product.category === "women");
     const priceMatch = product.price >= minPrice && (maxPrice === 999 || product.price <= maxPrice);
 
     return categoryMatch && priceMatch;
-  });
+});
 
   return (
     <>
