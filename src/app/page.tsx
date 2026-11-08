@@ -89,7 +89,6 @@ export default async function Home() {
           </div>
 
           <div className="relative mx-auto h-[430px] w-full max-w-[540px] sm:h-[530px]">
-
             <div className="absolute top-5 right-0 h-[90%] w-[78%] rounded-t-full bg-[#dcc9b1]/60" />
 
             {heroWomen && (
@@ -111,8 +110,7 @@ export default async function Home() {
                   alt={heroMen.title}
                   fill
                   sizes="(max-width: 1024px) 40vw, 240px"
-                  className="object-contain p-3"
-                />
+                  className="object-contain p-3"/>
               </div>
             )}
 
