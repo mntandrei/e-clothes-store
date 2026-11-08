@@ -3,6 +3,9 @@ import type { FakeStoreProduct, Product } from '../types/product';
 import { cacheLife } from "next/cache";
 
 export async function getFakeProducts() {
+    "use cache";
+    cacheLife("hours");
+
     const response = await fetch("https://fakestoreapi.com/products");
 
     if (!response.ok) {
