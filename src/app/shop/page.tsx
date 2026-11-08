@@ -1,5 +1,4 @@
 import { getAllProducts } from "@/lib/product";
-import ProductCard from "@/app/components/products/ProductCard";
 import Filter from "@/app/components/shop/Filter";
 
 export default async function Shop() {
@@ -25,24 +24,13 @@ export default async function Shop() {
           <span className="text-[11px] font-medium uppercase tracking-[0.15em] text-[#6b6054]">
             Men & Women
           </span>
-
-          <span className="text-xs text-[#6b6054]">
-            {products.length} Products
-          </span>
         </div>
       </div>
 
       <div className="mt-8 grid w-full max-w-[1280px] grid-cols-1 items-start gap-6 lg:grid-cols-[250px_minmax(0,1fr)]">
-
-        <Filter />
-
-        <div className="grid min-w-0 grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
-          {products.map((product, index) => (
-            <ProductCard key={product.id} product={product} eager={index < 4}/>
-          ))}
-        </div>
-
+        <Filter products={products} />
       </div>
+
     </section>
   );
 }
