@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import type { Product } from "@/types/product";
 import ProductCard from "@/app/components/products/ProductCard";
+import { useSearchParams } from "next/navigation";
 
 type FilterProps = {
   products: Product[];
@@ -16,10 +17,19 @@ export default function Filter({ products }: FilterProps) {
   const [maxPrice, setMaxPrice] = useState(999);
 
   const [loaded, isLoaded] = useState(false);
-
   const filters = {men, women, minPrice, maxPrice};
 
+  const searchParams = useSearchParams();
+  const category = searchParams.get("category");
+
   useEffect(() => {
+    if (category === "men" || category === "women") {
+      setMen(category === "men");
+      setWomen(category === "women");
+      isLoaded(true);
+      return;
+    }
+
     const savedFilters = sessionStorage.getItem("aurel-filters");
 
     if (savedFilters) {
@@ -38,7 +48,7 @@ export default function Filter({ products }: FilterProps) {
         }
     }
     isLoaded(true);
-  }, []);
+  }, [category]);
 
   useEffect(() => {
   if (!loaded) return;

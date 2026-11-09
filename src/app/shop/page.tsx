@@ -1,5 +1,6 @@
 import { getAllProducts } from "@/lib/product";
 import Filter from "@/app/components/shop/Filter";
+import { Suspense } from "react";
 
 export default async function Shop() {
   const products = await getAllProducts();
@@ -28,7 +29,9 @@ export default async function Shop() {
       </div>
 
       <div className="mt-8 grid w-full max-w-[1280px] grid-cols-1 items-start gap-6 lg:grid-cols-[250px_minmax(0,1fr)]">
-        <Filter products={products} />
+        <Suspense fallback={null}>
+          <Filter products={products} />
+        </Suspense>
       </div>
 
     </section>

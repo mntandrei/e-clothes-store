@@ -215,8 +215,7 @@ export default async function Home() {
               <ArrowUpRight
                 size={24}
                 strokeWidth={1.4}
-                className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-              />
+                className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"/>
             </div>
           </Link>
         </div>
@@ -252,8 +251,7 @@ export default async function Home() {
             {featuredProducts.map((product) => (
               <ProductCard
                 key={`${product.category}-${product.id}`}
-                product={product}
-              />
+                product={product}/>
             ))}
           </div>
         </div>
