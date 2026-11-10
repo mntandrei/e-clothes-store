@@ -5,21 +5,15 @@ type ShopFilterValues = {
   women: boolean;
   minPrice: number;
   maxPrice: number;
+  searchQuery: string;
 };
 
-export function filterShopProducts(
-  products: Product[],
-  { men, women, minPrice, maxPrice }: ShopFilterValues
-): Product[] {
+export function filterShopProducts(products: Product[], { men, women, minPrice, maxPrice, searchQuery }: ShopFilterValues): Product[] {
   return products.filter((product) => {
-    const categoryMatch =
-      (men && product.category === "men") ||
-      (women && product.category === "women");
+    const categoryMatch = (men && product.category === "men") || (women && product.category === "women");
+    const priceMatch = product.price >= minPrice && (maxPrice === 999 || product.price <= maxPrice);
 
-    const priceMatch =
-      product.price >= minPrice &&
-      (maxPrice === 999 || product.price <= maxPrice);
-
-    return categoryMatch && priceMatch;
+    const searchMatch = product.title.toLowerCase().includes(searchQuery);
+    return searchMatch && categoryMatch && priceMatch;
   });
 }
