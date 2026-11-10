@@ -1,59 +1,89 @@
-
+import Image from "next/image";
 import Link from "next/link";
+import { Heart, ArrowLeft } from "lucide-react";
+import { getAllProducts } from "@/lib/product";
+import { notFound } from "next/navigation";
 
 type ProductPageProps = {
   params: Promise<{ id: string }>;
 };
 
-export default async function ProductPage({
-  params,
-}: ProductPageProps) {
+export default async function ProductPage({params}: ProductPageProps) {
   const { id } = await params;
 
+  const products = await getAllProducts();
+
+  const product = products.find(
+    (product) => product.id === Number(id));
+
+  if (!product) notFound();
+
   return (
-    <main className="min-h-screen bg-[#f8f5ee] px-6 py-16 text-[#29251f]">
-      <div className="mx-auto max-w-[1280px]">
+    <main className="min-h-screen bg-[#f8f5ee] px-5 py-8 text-[#29251f] sm:px-6 lg:py-12">
+      <div className="mx-auto max-w-[1100px]">
         <Link
           href="/shop"
-          className="text-sm text-[#6b6054] transition-colors hover:text-[#a17c58]"
-        >
-          ← Back to Shop
+          className="inline-flex items-center gap-2 text-xs text-[#6b6054] transition-colors hover:text-[#a17c58]">
+          <ArrowLeft size={16} strokeWidth={1.6} />
+          BACK TO SHOP
         </Link>
 
-        <div className="mt-10 grid gap-12 lg:grid-cols-2">
-          {/* Product image */}
-          <div className="flex aspect-square items-center justify-center rounded-md bg-[#e8decd]">
-            <span className="text-sm text-[#8b7358]">
-              Product Image
-            </span>
+        <div className="mt-7 grid items-start gap-8 lg:grid-cols-2 lg:gap-12">
+
+          <div className="relative h-[360px] w-full overflow-hidden rounded-md bg-[#e8decd] sm:h-[440px] lg:h-[500px]">
+            <Image
+              src={product.thumbnail}
+              alt={product.title}
+              fill
+              sizes="(max-width: 1024px) 100vw, 550px"
+              className="object-contain p-6 sm:p-8"
+              loading="eager"/>
           </div>
 
-          {/* Product information */}
-          <div className="flex flex-col justify-center">
-            <p className="text-xs uppercase tracking-[0.2em] text-[#a17c58]">
-              AUREL / COLLECTION
+          <div className="flex flex-col py-2 lg:py-4">
+
+            <p className="text-[11px] uppercase tracking-[0.2em] text-[#a17c58]">
+              AUREL / {product.category}
             </p>
 
-            <h1 className="mt-5 font-serif text-5xl">
-              Product {id}
+            <h1 className="mt-4 font-serif text-3xl font-normal leading-[1.12] tracking-tight text-[#393027] sm:text-4xl lg:text-[42px]">
+              {product.title}
             </h1>
 
-            <p className="mt-6 text-2xl font-medium">
-              $99.00
+            <p className="mt-5 text-2xl font-medium text-[#29251f]">
+              €{product.price.toFixed(2)}
             </p>
 
-            <div className="my-8 h-px bg-[#d5c5ad]" />
+            <div className="my-6 h-px w-full bg-[#d5c5ad]" />
 
-            <p className="max-w-md text-sm leading-7 text-[#6b6054]">
-              Product description will appear here.
+            <h2 className="mb-3 text-xs font-medium uppercase tracking-[0.15em] text-[#393027]">
+              Product Details
+            </h2>
+
+            <p className="text-sm leading-7 text-[#6b6054]">
+              {product.description}
             </p>
 
-            <button
-              type="button"
-              className="mt-10 w-full max-w-sm cursor-pointer bg-[#29251f] px-8 py-4 text-sm tracking-widest text-white transition-colors hover:bg-[#a17c58]"
-            >
-              ADD TO CART
-            </button>
+            <div className="mt-8 flex w-full max-w-[440px] items-stretch gap-3">
+
+              <button
+                type="button"
+                className="flex h-12 flex-1 cursor-pointer items-center justify-center bg-[#29251f] px-5 text-xs font-medium tracking-[0.12em] text-white transition-colors duration-200 hover:bg-[#a17c58]">
+                ADD TO CART
+              </button>
+
+              <button
+                type="button"
+                aria-label="Add to favorites"
+                className="flex size-12 shrink-0 cursor-pointer items-center justify-center border border-[#d5c5ad] bg-transparent text-[#29251f] transition-colors duration-200 hover:border-[#a17c58] hover:bg-[#e8decd] hover:text-[#a17c58]">
+                <Heart size={21} strokeWidth={1.7} />
+              </button>
+
+            </div>
+
+            <p className="mt-5 text-xs text-[#9a8f83]">
+              CASUAL. MODERN. YOU.
+            </p>
           </div>
         </div>
       </div>

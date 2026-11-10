@@ -70,7 +70,6 @@ export default function NavBar() {
           </div>
 
           <div className="order-2 ml-auto flex shrink-0 items-center gap-3 sm:gap-4 md:order-3 md:ml-0">
-
             <button
               type="button"
               aria-label="Favorites"
@@ -80,16 +79,16 @@ export default function NavBar() {
 
             <button
               type="button"
-              aria-label="Account"
+              aria-label="Shopping bag"
               className="cursor-pointer transition-colors duration-200 hover:text-[#a17c58]">
-              <UserRound size={19} strokeWidth={1.8} />
+              <ShoppingBag size={19} strokeWidth={1.8} />
             </button>
 
             <button
               type="button"
-              aria-label="Shopping bag"
+              aria-label="Account"
               className="cursor-pointer transition-colors duration-200 hover:text-[#a17c58]">
-              <ShoppingBag size={19} strokeWidth={1.8} />
+              <UserRound size={19} strokeWidth={1.8} />
             </button>
           </div>
         </div>
