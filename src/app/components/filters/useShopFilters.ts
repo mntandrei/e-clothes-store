@@ -38,6 +38,7 @@ export function useShopFilters() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
+  const searchQuery = searchParams.get("q")?.trim().toLowerCase() ?? "";
 
   const updateCategory = (nextMen: boolean, nextWomen: boolean) => {
     setMen(nextMen);
@@ -120,5 +121,6 @@ export function useShopFilters() {
     setMaxPrice,
     updateCategory,
     resetFilters,
+    searchQuery,
   };
 }

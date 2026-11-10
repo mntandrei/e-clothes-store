@@ -20,6 +20,7 @@ export default function ShopCatalog({ products }: ShopCatalogProps) {
     setMaxPrice,
     updateCategory,
     resetFilters,
+    searchQuery,
   } = useShopFilters();
 
   const filteredProducts = filterShopProducts(products, {

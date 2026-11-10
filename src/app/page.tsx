@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, ArrowRight, MoveRight } from "lucide-react";
 import { getAllProducts } from "@/lib/product";
-import ProductCard from "@/app/components/products/ProductCard";
+import ProductCard from "@/app/components/productscards/ProductCard";
 
 export default async function Home() {
   const products = await getAllProducts();
