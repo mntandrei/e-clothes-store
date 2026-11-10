@@ -13,7 +13,7 @@ export function filterShopProducts(products: Product[], { men, women, minPrice, 
     const categoryMatch = (men && product.category === "men") || (women && product.category === "women");
     const priceMatch = product.price >= minPrice && (maxPrice === 999 || product.price <= maxPrice);
 
-    const searchMatch = product.title.toLowerCase().includes(searchQuery);
+    const searchMatch = searchQuery === "men" || searchQuery === "women" ? product.category === searchQuery : product.title.toLowerCase().includes(searchQuery);
     return searchMatch && categoryMatch && priceMatch;
   });
 }

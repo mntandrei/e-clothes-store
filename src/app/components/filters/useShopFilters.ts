@@ -68,8 +68,16 @@ export function useShopFilters() {
 
   useEffect(() => {
     const categories = searchParams.getAll("category");
-    const validUrlCategories =
-      categories.length > 0 &&
+    
+    if (searchQuery && categories.length === 0) {
+      setMen(true);
+      setWomen(true);
+      setMinPrice(0);
+      setMaxPrice(999);
+      setLoaded(true);
+      return;
+    }
+    const validUrlCategories = categories.length > 0 &&
       (categories.every((value) => value === "men" || value === "women") ||
         (categories.length === 1 && categories[0] === "none"));
 

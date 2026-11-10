@@ -23,12 +23,7 @@ export default function ShopCatalog({ products }: ShopCatalogProps) {
     searchQuery,
   } = useShopFilters();
 
-  const filteredProducts = filterShopProducts(products, {
-    men,
-    women,
-    minPrice,
-    maxPrice,
-  });
+  const filteredProducts = filterShopProducts(products, {men, women, minPrice, maxPrice, searchQuery});
 
   return (
     <>
@@ -40,8 +35,7 @@ export default function ShopCatalog({ products }: ShopCatalogProps) {
         onCategoryChange={updateCategory}
         onMinPriceChange={setMinPrice}
         onMaxPriceChange={setMaxPrice}
-        onReset={resetFilters}
-      />
+        onReset={resetFilters}/>
       <ProductGrid products={filteredProducts} />
     </>
   );
