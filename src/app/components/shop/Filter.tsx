@@ -52,7 +52,7 @@ export default function Filter({ products }: FilterProps) {
     router.replace(`/shop?${params.toString()}`, {
       scroll: false,
     });
-  }
+  };
 
   useEffect(() => {
     const categories = searchParams.getAll("category");
@@ -65,7 +65,7 @@ export default function Filter({ products }: FilterProps) {
       setWomen(categories.includes("women"));
       setLoaded(true);
       return;
-    }
+    };
 
     const savedFilters = sessionStorage.getItem("aurel-filters");
 
@@ -98,7 +98,7 @@ export default function Filter({ products }: FilterProps) {
       } catch {
         
       }
-    }
+    };
 
     setLoaded(true);
   }, [searchParams]);
