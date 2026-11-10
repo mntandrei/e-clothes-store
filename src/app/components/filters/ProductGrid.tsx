@@ -1,5 +1,6 @@
 import type { Product } from "@/types/product";
 import ProductCard from "@/app/components/productscards/ProductCard";
+import Link from "next/link";
 
 type ProductGridProps = {
   products: Product[];
@@ -18,12 +19,16 @@ export default function ProductGrid({ products }: ProductGridProps) {
       </div>
       {products.length > 0 ? (
         <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
-          {products.map((product, index) => (
+         {products.map((product, index) => (
+          <Link
+            key={product.id}
+            href={`/shop/${product.id}`}
+            className="block transition-transform duration-300 ease-out hover:scale-[1.02]">
             <ProductCard
-              key={product.id}
               product={product}
               eager={index < 4}/>
-          ))}
+          </Link>
+        ))}
         </div>
       ) : (
         <div className="rounded-xl border border-[#e8decd] bg-[#f8f5ee] px-6 py-16 text-center">

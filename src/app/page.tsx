@@ -110,7 +110,8 @@ export default async function Home() {
                   alt={heroMen.title}
                   fill
                   sizes="(max-width: 1024px) 40vw, 240px"
-                  className="object-contain p-3"/>
+                  className="object-contain p-3"
+                  loading="eager"/>
               </div>
             )}
 
@@ -163,7 +164,8 @@ export default async function Home() {
                   alt={heroMen.title}
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-contain p-10 opacity-90 transition-transform duration-500 group-hover:scale-105"/>
+                  className="object-contain p-10 opacity-90 transition-transform duration-500 group-hover:scale-105"
+                  loading="eager"/>
               </div>
             )}
 
