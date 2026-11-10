@@ -24,14 +24,35 @@ export default function Filter({ products }: FilterProps) {
     setWomen(nextWomen);
 
     const params = new URLSearchParams(searchParams.toString());
+
+    const previous = params
+      .getAll("category")
+      .filter((value) => value === "men" || value === "women");
+
+    const selected = previous.filter((value) =>
+      value === "men" ? nextMen : nextWomen
+    );
+
+    if (nextMen && !selected.includes("men")) {
+      selected.push("men");
+    }
+
+    if (nextWomen && !selected.includes("women")) {
+      selected.push("women");
+    }
+
     params.delete("category");
 
-    if (nextMen) params.append("category", "men");
-    if (nextWomen) params.append("category", "women");
-    if (!nextMen && !nextWomen) params.append("category", "none");
+    if (selected.length === 0) {
+      params.append("category", "none");
+    } else {
+      selected.forEach((value) => params.append("category", value));
+    }
 
-    router.replace(`/shop?${params.toString()}`, { scroll: false });
-  };
+    router.replace(`/shop?${params.toString()}`, {
+      scroll: false,
+    });
+  }
 
   useEffect(() => {
     const categories = searchParams.getAll("category");
@@ -96,9 +117,7 @@ export default function Filter({ products }: FilterProps) {
       (men && product.category === "men") ||
       (women && product.category === "women");
 
-    const priceMatch =
-      product.price >= minPrice &&
-      (maxPrice === 999 || product.price <= maxPrice);
+    const priceMatch = product.price >= minPrice && (maxPrice === 999 || product.price <= maxPrice);
 
     return categoryMatch && priceMatch;
   });
