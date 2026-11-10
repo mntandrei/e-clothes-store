@@ -3,13 +3,18 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {Heart,UserRound,ShoppingBag,Menu,ChevronDown,ChevronUp} from "lucide-react";
+import {UserRound,Menu,ChevronDown,ChevronUp} from "lucide-react";
 import SearchBar from "./SearchBar";
+import CartButton from "./CartButton";
+import CartDropdown from "./CartDropdown";
+import FavoritesButton from "./FavoritesButton";
+import FavoritesDropdown from "./FavoritesDropdown";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [openPanel, setOpenPanel] = useState<"cart" | "favorites" | null>(null);
 
   const lastScrollY = useRef(0);
 
@@ -69,20 +74,14 @@ export default function NavBar() {
             <SearchBar />
           </div>
 
-          <div className="order-2 ml-auto flex shrink-0 items-center gap-3 sm:gap-4 md:order-3 md:ml-0">
-            <button
-              type="button"
-              aria-label="Favorites"
-              className="cursor-pointer transition-colors duration-200 hover:text-[#a17c58]">
-              <Heart size={19} strokeWidth={1.8} />
-            </button>
+          <div className="relative order-2 ml-auto flex shrink-0 items-center gap-3 sm:gap-4 md:order-3 md:ml-0">
+            <FavoritesButton
+              isOpen={openPanel === "favorites"}
+              onClick={() => setOpenPanel((prev) => prev === "favorites" ? null : "favorites")}/>
 
-            <button
-              type="button"
-              aria-label="Shopping bag"
-              className="cursor-pointer transition-colors duration-200 hover:text-[#a17c58]">
-              <ShoppingBag size={19} strokeWidth={1.8} />
-            </button>
+            <CartButton
+              isOpen={openPanel === "cart"}
+              onClick={() => setOpenPanel((prev) =>  prev === "cart" ? null : "cart")}/>
 
             <button
               type="button"
@@ -90,6 +89,9 @@ export default function NavBar() {
               className="cursor-pointer transition-colors duration-200 hover:text-[#a17c58]">
               <UserRound size={19} strokeWidth={1.8} />
             </button>
+
+            {openPanel === "favorites" && <FavoritesDropdown />}
+            {openPanel === "cart" && <CartDropdown />}
           </div>
         </div>
       </div>
