@@ -1,5 +1,5 @@
 import { getAllProducts } from "@/lib/product";
-import Filter from "@/app/components/shop/Filter";
+import Filter from "@/app/components/filters/Filter";
 import { Suspense } from "react";
 
 export default async function Shop() {

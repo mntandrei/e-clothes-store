@@ -163,7 +163,6 @@ export default function Footer() {
                   size={17}
                   className="ml-auto text-[#9a8f83] transition-colors group-hover:text-[#29251f]"/>
               </a>
-              
             </div>
           </div>
         </div>
