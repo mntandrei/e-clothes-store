@@ -21,8 +21,7 @@ type Category = "men" | "women";
 
 export default function CollectionsMenu({products}: CollectionsMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeCategory, setActiveCategory] =
-    useState<Category | null>(null);
+  const [activeCategory, setActiveCategory] = useState<Category | null>(null);
 
   const featuredProducts = activeCategory? products.filter((product) => product.category === activeCategory).slice(0, 5) : [];
 
@@ -32,12 +31,10 @@ export default function CollectionsMenu({products}: CollectionsMenuProps) {
   };
 
   return (
-    <div
-      className="relative shrink-0"
+    <div className="relative shrink-0"
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={closeMenu}
-      onKeyDown={(event) => {if (event.key === "Escape") closeMenu();
-      }}>
+      onKeyDown={(event) => {if (event.key === "Escape") closeMenu()}}>
       <button
         type="button"
         aria-expanded={isOpen}
