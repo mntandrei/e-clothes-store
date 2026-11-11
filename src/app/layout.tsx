@@ -84,9 +84,9 @@ export default async function RootLayout({children}: Readonly<{children: React.R
   const products = await getAllProducts();
 
   const collectionProducts = [
-    ...products.filter((product) => product.category === "men").slice(0, 3),
+    ...products.filter((product) => product.category === "men").slice(0, 5),
 
-    ...products.filter((product) => product.category === "women").slice(0, 3),
+    ...products.filter((product) => product.category === "women").slice(0, 5),
   ];
 
   return (
