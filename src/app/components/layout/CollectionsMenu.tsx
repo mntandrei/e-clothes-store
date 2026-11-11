@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu,ChevronUp, ChevronDown, ChevronRight, ChevronLeft} from "lucide-react";
+import {Menu, ChevronUp, ChevronDown, ChevronRight, ChevronLeft} from "lucide-react";
 
 export type CollectionProduct = {
   id: number;
