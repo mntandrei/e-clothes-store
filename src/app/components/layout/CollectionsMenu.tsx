@@ -58,14 +58,11 @@ export default function CollectionsMenu({products}: CollectionsMenuProps) {
       </button>
 
       {isOpen && (
-        <div
-          id="collections-menu"
-          className="absolute top-full left-0 z-50 pt-4">
+        <div id="collections-menu" className="absolute top-full left-0 z-50 pt-4">
           <div className="relative w-40 rounded-md border border-[#e8decd] bg-[#f8f5ee] p-2 shadow-lg">
 
             <div className="flex flex-col gap-1">
-              {(["men", "women"] as const).map((category) => {
-                const isActive = activeCategory === category;
+              {(["men", "women"] as const).map((category) => { const isActive = activeCategory === category;
 
                 return (
                   <div
