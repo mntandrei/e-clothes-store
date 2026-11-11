@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Heart, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { getAllProducts } from "@/lib/product";
 import { notFound } from "next/navigation";
+import ProductActions from "@/app/components/productscards/ProductActions";
 
 type ProductPageProps = {
   params: Promise<{ id: string }>;
@@ -10,11 +11,9 @@ type ProductPageProps = {
 
 export default async function ProductPage({params}: ProductPageProps) {
   const { id } = await params;
-
   const products = await getAllProducts();
 
-  const product = products.find(
-    (product) => product.id === Number(id));
+  const product = products.find((product) => product.id === Number(id));
 
   if (!product) notFound();
 
@@ -29,7 +28,6 @@ export default async function ProductPage({params}: ProductPageProps) {
         </Link>
 
         <div className="mt-7 grid items-start gap-8 lg:grid-cols-2 lg:gap-12">
-
           <div className="relative h-[360px] w-full overflow-hidden rounded-md bg-[#e8decd] sm:h-[440px] lg:h-[500px]">
             <Image
               src={product.thumbnail}
@@ -41,7 +39,6 @@ export default async function ProductPage({params}: ProductPageProps) {
           </div>
 
           <div className="flex flex-col py-2 lg:py-4">
-
             <p className="text-[11px] uppercase tracking-[0.2em] text-[#a17c58]">
               AUREL / {product.category}
             </p>
@@ -64,22 +61,7 @@ export default async function ProductPage({params}: ProductPageProps) {
               {product.description}
             </p>
 
-            <div className="mt-8 flex w-full max-w-[440px] items-stretch gap-3">
-
-              <button
-                type="button"
-                className="flex h-12 flex-1 cursor-pointer items-center justify-center bg-[#29251f] px-5 text-xs font-medium tracking-[0.12em] text-white transition-colors duration-200 hover:bg-[#a17c58]">
-                ADD TO CART
-              </button>
-
-              <button
-                type="button"
-                aria-label="Add to favorites"
-                className="flex size-12 shrink-0 cursor-pointer items-center justify-center border border-[#d5c5ad] bg-transparent text-[#29251f] transition-colors duration-200 hover:border-[#a17c58] hover:bg-[#e8decd] hover:text-[#a17c58]">
-                <Heart size={21} strokeWidth={1.7} />
-              </button>
-
-            </div>
+            <ProductActions product={product} />
 
             <p className="mt-5 text-xs text-[#9a8f83]">
               CASUAL. MODERN. YOU.
