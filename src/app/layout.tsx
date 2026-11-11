@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { getAllProducts } from "@/lib/product";
+
 import "./globals.css";
+
 import NavBar from "./components/layout/NavBar";
 import Footer from "./components/layout/Footer";
 
@@ -77,12 +80,20 @@ export const metadata: Metadata = {
   },
 };
 
+export default async function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
+  const products = await getAllProducts();
 
-export default function RootLayout({children}: Readonly<{children: React.ReactNode;}>) {
+  const collectionProducts = [
+    ...products.filter((product) => product.category === "men").slice(0, 3),
+
+    ...products.filter((product) => product.category === "women").slice(0, 3),
+  ];
+
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className={`${cormorant.variable} ${manrope.variable} flex min-h-dvh flex-col text-[#29251f] font-sans antialiased`}>
-        <NavBar />
+      <body
+        className={`${cormorant.variable} ${manrope.variable} flex min-h-dvh flex-col text-[#29251f] font-sans antialiased`}>
+        <NavBar products={collectionProducts} />
         <main className="w-full flex-1">
           {children}
         </main>
