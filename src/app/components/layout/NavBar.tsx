@@ -83,12 +83,13 @@ export default function NavBar() {
               isOpen={openPanel === "cart"}
               onClick={() => setOpenPanel((prev) =>  prev === "cart" ? null : "cart")}/>
 
-            <button
+            <Link
               type="button"
+              href="/account"
               aria-label="Account"
               className="cursor-pointer transition-colors duration-200 hover:text-[#a17c58]">
               <UserRound size={19} strokeWidth={1.8} />
-            </button>
+            </Link>
 
             {openPanel === "favorites" && <FavoritesDropdown />}
             {openPanel === "cart" && <CartDropdown />}
